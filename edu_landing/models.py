@@ -63,3 +63,20 @@ class AboutPageContent(models.Model):
 
     def __str__(self):
         return "Страница 'О нас'"
+    
+
+
+class Course(models.Model):
+    title = models.CharField("Название курса", max_length=200)
+    short_description = models.CharField("Краткое описание", max_length=300)   
+    full_description = models.TextField("Подробное описание")
+    image = models.ImageField("Изображение курса", upload_to="courses/", blank=True, null=True)
+    price = models.DecimalField("Цена", max_digits=10, decimal_places=2, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Курсы"
+        verbose_name_plural = "Курсы"
+    
+    def __str__(self):
+        return self.title
