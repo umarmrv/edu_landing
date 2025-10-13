@@ -22,3 +22,24 @@ class SiteSettings(models.Model):
     
     def __str__(self):
         return "Настройки сайта"
+
+
+
+class HomePageContent(models.Model):
+    main_title = models.CharField("Главный заголовок", max_length=200)
+    subtitle = models.CharField("Подзаголовок", max_length=300, blank=True)
+    description = models.TextField("Описание", blank=True)
+
+    def save(self, *args, **kwargs):
+        self.pk = 1
+        super(HomePageContent, self).save(*args, **kwargs)
+    
+    def delete(self, *args, **kwargs):
+        pass
+
+    class Meta:
+        verbose_name = "Контент главной страницы"
+        verbose_name_plural = "Контент главной страницы"
+    
+    def __str__(self):
+        return "Главная страница"
