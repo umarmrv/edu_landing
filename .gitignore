@@ -3,3 +3,33 @@
 venv/
 ENV/
 env/
+
+# Python
+pycache/
+*.pyc
+*.pyo
+*.pyd
+*.py[cod]
+*.swp
+*.egg-info/
+*.egg
+dist/
+build/
+
+# Django
+*.log
+*.pot
+*.pyc
+db.sqlite3
+media/
+staticfiles/
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
