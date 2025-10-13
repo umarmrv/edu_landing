@@ -43,3 +43,23 @@ class HomePageContent(models.Model):
     
     def __str__(self):
         return "Главная страница"
+    
+
+
+class AboutPageContent(models.Model):
+    title = models.CharField("Заголовок", max_length=200)
+    content = models.TextField('Текст страницы "О нас"')
+
+    def save(self, *args, **kwargs):
+        self.pk = 1
+        super(AboutPageContent, self).save(*args, **kwargs)
+    
+    def delete(self, *args, **kwargs):
+        pass
+
+    class Meta:
+        verbose_name = "Контент станицы 'О нас'"
+        verbose_name_plural = "Контент станицы 'О нас'"
+
+    def __str__(self):
+        return "Страница 'О нас'"
