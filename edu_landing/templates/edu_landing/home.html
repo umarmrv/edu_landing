@@ -1,0 +1,73 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site_settings.site_name|default:"Education" }}</title>
+    <link rel="stylesheet" href="{% static "css/home.css" %}">
+</head>
+<body>
+    
+
+    <nav class="nav">
+        <div class="nav_left">
+            {% if site_settings and site_settings.logo %}
+            <img src="{{ site_settings.logo.url }}" alt="Logo" class="logo_img">
+            {% else %}
+            <div class="divider"></div>
+            {% endif %}
+            <div class="nav_links">
+                <a href="{% url "home" %}" class="nav_links-a home-page">Home</a>
+                <a href="{% url "courses" %}" class="nav_links-a">Courses</a>
+                <a href="{% url "about" %}" class="nav_links-a">About</a>
+            </div>
+        </div>
+        <div class="nav_right">
+            <a href="/admin/" class="admin-link">Admin</a>
+        </div>
+    </nav>
+
+
+    <main>
+        <div class="hero">
+            <img src="{{ site_settings.logo.url }}" alt="Logo" class="logo">
+            <div class="hero-text">
+                <h1 class="hero-title">{{ site_settings.site_name }}</h1>
+                <p class="hero-text-p" id="changing-text">{{ texts.0.text }}</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const texts = [
+        {% for t in texts %}
+            "{{ t.text|escapejs }}"{% if not forloop.last %},{% endif %}
+        {% endfor %}
+        ];
+
+        let index = 0;
+        const changingText = document.getElementById('changing-text');
+
+        function changeText() {
+        // Сначала исчезновение текста
+        changingText.style.opacity = 0;
+
+        setTimeout(() => {
+            // Меняем текст
+            index = (index + 1) % texts.length;
+            changingText.textContent = texts[index];
+
+            // Появление текста
+            changingText.style.opacity = 1;
+        }, 1000); // совпадает с transition: opacity
+        }
+
+        // Смена каждые 10 секунд
+        setInterval(changeText, 10000);
+</script>
+
+
+</body>
+</html>

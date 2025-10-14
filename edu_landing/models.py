@@ -66,6 +66,14 @@ class AboutPageContent(models.Model):
     
 
 
+class HomePageTexts(models.Model):
+    text = models.TextField()
+
+    def __str__(self):
+        return f"Текст №{self.id}"
+    
+
+
 class Course(models.Model):
     title = models.CharField("Название курса", max_length=200)
     short_description = models.CharField("Краткое описание", max_length=300)   

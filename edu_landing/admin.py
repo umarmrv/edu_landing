@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from .models import SiteSettings, HomePageContent, AboutPageContent, Course
+from .models import SiteSettings, HomePageContent, AboutPageContent, Course, HomePageTexts
 
 # Register your models here.
 
@@ -71,3 +71,6 @@ class CourseAdmin(admin.ModelAdmin):
         return "(No image)"
     
     img_preview.short_description = "Image"
+
+
+admin.site.register(HomePageTexts)

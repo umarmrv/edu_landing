@@ -1,15 +1,17 @@
 from django.shortcuts import render, get_object_or_404
-from .models import SiteSettings, HomePageContent, AboutPageContent, Course
+from .models import SiteSettings, HomePageContent, AboutPageContent, Course, HomePageTexts
 
 # Create your views here.
 
 def home_page(request):
     site_settings = SiteSettings.objects.first()
     home_texts = HomePageContent.objects.all()
+    texts = HomePageTexts.objects.all()
 
     context = {
         "site_settings":site_settings,
         "home_texts":home_texts,
+        "texts":texts,
     }
 
     return render(request, "edu_landing/home.html", context)
