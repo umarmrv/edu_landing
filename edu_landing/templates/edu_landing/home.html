@@ -62,20 +62,6 @@
         </div>
     </section>
 
-    <section class="faq">
-        <h2>Часто задаваемые вопросы по курсам</h2>
-        <div class="accordion">
-            {% for course in courses %}
-            <div class="accordion-item">
-                <button class="accordion-header">{{ course.title }}</button>
-                <div class="accordion-body">
-                <p>{{ course.full_description }}</p>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </section>
-
 
     <script>
         const texts = [
