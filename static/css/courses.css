@@ -87,90 +87,188 @@ h1, h2, h3 {
 
 
 .course-page {
-  background-image: url('/static/images/your-course-background.jpg'); /* вставь свой фон */
-  background-attachment: fixed; /* фиксируем фон */
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  min-height: 100vh;
-  padding: 80px 5%;
-  z-index: 0;
-  color: #fff;
+    margin-top: -65px;
+    background-attachment: fixed; /* фиксируем фон */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    min-height: 100vh;
+    padding: 80px 5%;
+    z-index: 0;
+    color: #fff;
 }
 
 .course-page::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.4); /* тёмный слой для читаемости текста */
-  backdrop-filter: blur(6px); /* эффект блюра */
-  z-index: -1;
+    content: '';
+    position: absolute;
+    background: rgba(0, 0, 0, 0.4);
+    top: 0; left: 0; right: 0; bottom: 0;
+    backdrop-filter: blur(6px);
+    z-index: -1;
 }
 
 .course-hero {
-  text-align: center;
-  margin-bottom: 60px;
+    text-align: center;
+    margin-bottom: 60px;
 }
 
 .course-hero h1 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 48px;
-  margin-bottom: 15px;
-  color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 48px;
+    margin-bottom: 15px;
+    color: #fff;
 }
 
 .course-hero p {
-  font-family: 'Roboto', sans-serif;
-  font-size: 20px;
-  color: #ddd;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    color: #fff;
 }
 
 .course-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
 }
 
 .course-card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(4px);
-  border-radius: 10px;
-  padding: 25px;
-  max-width: 300px;
-  flex: 1 1 250px;
-  color: #fff;
-  text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    flex: 1 1 calc(50% - 30px); /* 2 карточки в ряд на больших экранах */
+    max-width: 500px;
+    height: 250px;
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.course-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4); /* тёмный слой для читаемости текста */
+    backdrop-filter: blur(4px); /* эффект блюра */
+    z-index: 0;
+}
+
+.course-card-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 20px;
 }
 
 .course-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
 .course-card h3 {
-  font-family: 'Montserrat', sans-serif;
-  margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 10px;
 }
 
 .course-card p {
-  font-family: 'Roboto', sans-serif;
-  margin-bottom: 15px;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 15px;
 }
 
 .course-card .btn {
-  display: inline-block;
-  padding: 10px 20px;
-  background: linear-gradient(90deg, #e60000, #0033cc);
-  color: #fff;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.3s;
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(90deg, #e60000, #0033cc);
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
 }
 
 .course-card .btn:hover {
+    transform: scale(1.05);   
+}
+
+@media (max-width: 768px) {
+    .course-card {
+        flex: 1 1 100%;
+    }
+}
+
+.site-footer {
+  background: #0033cc;
+  color: #fff;
+  padding: 40px 5%;
+  font-family: 'Roboto', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.footer-logo img {
+  width: 120px;
+  height: auto;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-links a:hover {
+  color: #e60000;
   transform: scale(1.05);
 }
 
+.footer-contact p {
+  margin: 5px 0;
+}
+
+.footer-contact a {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-contact a:hover {
+  text-decoration: underline;
+  color: #e60000;
+}
+
+.footer-copy {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* Адаптив для мобильных */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-links {
+    justify-content: center;
+  }
+}
