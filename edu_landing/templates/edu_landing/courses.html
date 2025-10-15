@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site_settings.site_name }} | Courses</title>
+
+    <link rel="stylesheet" href="{% static "css/courses.css" %}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+
+    <nav class="nav">
+        <div class="nav_left">
+            {% if site_settings and site_settings.logo %}
+            <img src="{{ site_settings.logo.url }}" alt="Logo" class="logo_img">
+            {% else %}
+            <div class="divider"></div>
+            {% endif %}
+            <div class="nav_links">
+                <a href="{% url "home" %}" class="nav_links-a home-page">Home</a>
+                <a href="{% url "courses" %}" class="nav_links-a courses-page">Courses</a>
+                <a href="{% url "about" %}" class="nav_links-a about-page">About</a>
+            </div>
+        </div>
+        <div class="nav_right">
+            <a href="/admin/" class="admin-link">Admin</a>
+        </div>
+    </nav>
+
+    <section class="course-page">
+
+        <div class="course-hero">
+            <h1>Our courses</h1>
+            <p>Explore a wide range of courses designed to help you learn and grow</p>
+        </div>
+
+        <div class="course-list">
+            <div class="course-card">
+                {% for course in courses %}
+                <h3>{{ course.title }}</h3>
+                <p>{{ course.short_description }}</p>
+                <a href="{% url 'course_detail' course.id %}" class="btn">Learn more</a>
+                {% endfor %}
+            </div>
+        </div>
+
+    </section>
+
+
+</body>
+</html>
