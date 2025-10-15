@@ -269,3 +269,124 @@ main {
   font-size: 0.95em;
   margin: 15px 0;
 }
+
+.contact-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 60px 8%;
+  background: #f7f9fc;
+  gap: 40px;
+  font-family: "Roboto", sans-serif;
+}
+
+.contact-info {
+  flex: 1 1 300px;
+  max-width: 400px;
+}
+
+.contact-info h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 28px;
+  color: #0033cc;
+  margin-bottom: 20px;
+}
+
+.contact-info p {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.7;
+}
+
+.contact-info a {
+  color: #e60000;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+.contact-map {
+  flex: 1 1 400px;
+  min-width: 350px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+
+.site-footer {
+  background: #0033cc;
+  color: #fff;
+  padding: 40px 5%;
+  font-family: 'Roboto', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.footer-logo img {
+  width: 120px;
+  height: auto;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+}
+
+.footer-links a {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-links a:hover {
+  color: #e60000;
+  transform: scale(1.05);
+}
+
+.footer-contact p {
+  margin: 5px 0;
+}
+
+.footer-contact a {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-contact a:hover {
+  text-decoration: underline;
+  color: #e60000;
+}
+
+.footer-copy {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* Адаптив для мобильных */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-links {
+    justify-content: center;
+  }
+}
