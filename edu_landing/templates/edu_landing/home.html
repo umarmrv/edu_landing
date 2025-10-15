@@ -112,35 +112,6 @@
         // document.body.style.filter = `blur(${blurValue}px)`;
         // });
 
-        document.addEventListener("DOMContentLoaded", function() {
-            const headers = document.querySelectorAll('.accordion-header');
-  
-            headers.forEach(header => {
-                header.addEventListener('click', () => {
-                    const body = header.nextElementSibling;
-      
-                    // Если аккордеон открыт — закрываем
-                    if (body.style.maxHeight && body.style.maxHeight !== "0px") {
-                        body.style.maxHeight = "0";
-                        body.style.paddingTop = "0";
-                        body.style.paddingBottom = "0";
-                    } else {
-                    // Закрываем все остальные аккордеоны (опционально, чтобы работал только один)
-                    headers.forEach(h => {
-                        const b = h.nextElementSibling;
-                        b.style.maxHeight = "0";
-                        b.style.paddingTop = "0";
-                        b.style.paddingBottom = "0";
-                    });
-                    // Открываем текущий
-                    body.style.maxHeight = body.scrollHeight + "px";
-                    body.style.paddingTop = "15px";
-                    body.style.paddingBottom = "15px";
-                }
-            });
-        });
-    });
-
     </script>
 
 
