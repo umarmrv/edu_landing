@@ -31,12 +31,6 @@ class SiteSettingsAdmin(admin.ModelAdmin):
 class HomePageContentAdmin(admin.ModelAdmin):
     list_display = ("main_title",)
 
-    fieldsets = (
-        (None, {
-            "fields":("main_title", "subtitle", "description"),
-        }),
-    )
-
     def has_add_permission(self, request):
         if HomePageContent.objects.exists():
             return False

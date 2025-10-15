@@ -5,13 +5,15 @@ from .models import SiteSettings, HomePageContent, AboutPageContent, Course, Hom
 
 def home_page(request):
     site_settings = SiteSettings.objects.first()
-    home_texts = HomePageContent.objects.all()
+    home_texts = HomePageContent.objects.first()
     texts = HomePageTexts.objects.all()
+    courses = Course.objects.all()[:3]
 
     context = {
         "site_settings":site_settings,
         "home_texts":home_texts,
         "texts":texts,
+        "courses":courses,
     }
 
     return render(request, "edu_landing/home.html", context)

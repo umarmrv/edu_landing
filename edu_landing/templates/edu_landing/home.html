@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ site_settings.site_name|default:"Education" }}</title>
     <link rel="stylesheet" href="{% static "css/home.css" %}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
     
@@ -30,7 +31,7 @@
     </nav>
 
 
-    <main>
+    <main style="background-image: url('{% static "img/background_img.jpg" %}');">
         <div class="hero">
             <img src="{{ site_settings.logo.url }}" alt="Logo" class="logo">
             <div class="hero-text">
@@ -39,6 +40,42 @@
             </div>
         </div>
     </main>
+
+    <section class="courses">
+        <div class="course-grid">
+            {% for course in courses %}
+            <div class="course-card">
+                <h3>{{ course.title }}</h3>
+                <p>{{ course.short_description }}</p>
+            </div>
+            {% endfor %}
+            <div class="course-card more-card">
+                <a href="{% url "courses" %}">More...</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="advantages">
+        <div class="advantages-container">
+            <h2>{{ home_texts.subtitle }}</h2>
+            <p>{{ home_texts.text }}</p>
+        </div>
+    </section>
+
+    <section class="faq">
+        <h2>Часто задаваемые вопросы по курсам</h2>
+        <div class="accordion">
+            {% for course in courses %}
+            <div class="accordion-item">
+                <button class="accordion-header">{{ course.title }}</button>
+                <div class="accordion-body">
+                <p>{{ course.full_description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
 
     <script>
         const texts = [
@@ -66,7 +103,45 @@
 
         // Смена каждые 10 секунд
         setInterval(changeText, 10000);
-</script>
+
+        window.addEventListener('scroll', function() {
+        const scroll = window.pageYOffset;
+        
+        // Чем больше скролл, тем сильнее размытие (0–5px)
+        // let blurValue = Math.min(scroll / 30, 5); // при 150px => 5px
+        // document.body.style.filter = `blur(${blurValue}px)`;
+        // });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const headers = document.querySelectorAll('.accordion-header');
+  
+            headers.forEach(header => {
+                header.addEventListener('click', () => {
+                    const body = header.nextElementSibling;
+      
+                    // Если аккордеон открыт — закрываем
+                    if (body.style.maxHeight && body.style.maxHeight !== "0px") {
+                        body.style.maxHeight = "0";
+                        body.style.paddingTop = "0";
+                        body.style.paddingBottom = "0";
+                    } else {
+                    // Закрываем все остальные аккордеоны (опционально, чтобы работал только один)
+                    headers.forEach(h => {
+                        const b = h.nextElementSibling;
+                        b.style.maxHeight = "0";
+                        b.style.paddingTop = "0";
+                        b.style.paddingBottom = "0";
+                    });
+                    // Открываем текущий
+                    body.style.maxHeight = body.scrollHeight + "px";
+                    body.style.paddingTop = "15px";
+                    body.style.paddingBottom = "15px";
+                }
+            });
+        });
+    });
+
+    </script>
 
 
 </body>
