@@ -8,6 +8,7 @@
     <title>{{ site_settings.site_name|default:"Education" }}</title>
     <link rel="stylesheet" href="{% static "css/home.css" %}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ site_settings.logo.url }}">
 </head>
 <body>
     
@@ -35,7 +36,7 @@
         <div class="hero">
             <img src="{{ site_settings.logo.url }}" alt="Logo" class="logo">
             <div class="hero-text">
-                <h1 class="hero-title">{{ site_settings.site_name }}</h1>
+                <h1 class="hero-title">{{ home_texts.main_title }}</h1>
                 <p class="hero-text-p" id="changing-text">{{ texts.0.text }}</p>
             </div>
         </div>
@@ -57,16 +58,16 @@
 
     <section class="advantages">
         <div class="advantages-container">
-            <h2>{{ home_texts.subtitle }}</h2>
-            <p>{{ home_texts.text }}</p>
+            <h2>Why choose us?</h2>
+            <p>{{ home_texts.subtitle }}</p>
         </div>
     </section>
 
     <section class="contact-section">
         <div class="contact-info">
             <h2>Our Address</h2>
-            <p>Kamolot Learning Center</p>
-            <p>Soghd Region, Jabbār-Rasulov District, Digmay Settlement</p>
+            <p>{{ site_settings.site_name }} Learning Center</p>
+            <p>{{ site_settings.address }}</p>
             <p>Phone: <a href="tel:{{ site_settings.phone }}">{{ site_settings.phone }}</a></p>
             <p>Email: <a href="mailto:{{site_settings.email}}">{{site_settings.email}}</a></p>
         </div>
@@ -98,7 +99,7 @@
             </div>
 
             <div class="footer-copy">
-                <p>&copy; {{ now.year }} Kamolot Learning Center. All rights reserved.</p>
+                <p>&copy; {{ now.year }} {{ site_settings.site_name }} Learning Center. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -116,30 +117,19 @@
         const changingText = document.getElementById('changing-text');
 
         function changeText() {
-        // Сначала исчезновение текста
         changingText.style.opacity = 0;
 
         setTimeout(() => {
-            // Меняем текст
             index = (index + 1) % texts.length;
             changingText.textContent = texts[index];
-
-            // Появление текста
             changingText.style.opacity = 1;
-        }, 1000); // совпадает с transition: opacity
+        }, 1000);
         }
 
-        // Смена каждые 10 секунд
         setInterval(changeText, 10000);
 
         window.addEventListener('scroll', function() {
         const scroll = window.pageYOffset;
-        
-        // Чем больше скролл, тем сильнее размытие (0–5px)
-        // let blurValue = Math.min(scroll / 30, 5); // при 150px => 5px
-        // document.body.style.filter = `blur(${blurValue}px)`;
-        // });
-
     </script>
 
 

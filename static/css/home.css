@@ -90,7 +90,7 @@ main {
     padding: 100px 0;
     height: 600px;
     background-size: cover;
-    background-position: center bottom;
+    background-position: center;
     /* background-attachment: fixed; */
     background-repeat: no-repeat;
     transition: filter 0.2s ease-out;
@@ -388,5 +388,188 @@ main {
 
   .footer-links {
     justify-content: center;
+  }
+}
+
+
+
+/* ✅ АДАПТИВ ПОД ПЛАНШЕТЫ (до 1024px) */
+@media (max-width: 1024px) {
+
+  .nav {
+    padding: 0 25px;
+  }
+
+  .hero {
+    flex-direction: column;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .hero-text {
+    width: 80%;
+  }
+
+  .logo {
+    width: 320px;
+  }
+
+  .hero-title {
+    font-size: 32px;
+  }
+
+  .course-card {
+    flex: 1 1 calc(45% - 20px);
+  }
+
+  .advantages-container {
+    min-width: auto;
+  }
+
+  .contact-section {
+    padding: 40px 6%;
+  }
+
+  .contact-map {
+    min-width: 300px;
+  }
+
+}
+
+
+/* ✅ АДАПТИВ ПОД МОБИЛЬНЫЕ (до 768px) */
+@media (max-width: 768px) {
+
+  body {
+    padding-top: 55px;
+  }
+
+  .nav {
+    height: 55px;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+
+  .nav_left {
+    gap: 10px;
+  }
+
+  .nav_links-a {
+    font-size: 14px;
+    margin-right: 5px;
+  }
+
+  .admin-link {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .hero {
+    flex-direction: column;
+    gap: 25px;
+    padding: 40px 0;
+  }
+
+  .hero-text {
+    width: 90%;
+    text-align: center;
+  }
+
+  .logo {
+    width: 240px;
+  }
+
+  .hero-title {
+    font-size: 28px;
+  }
+
+  #changing-text {
+    font-size: 16px;
+  }
+
+  .courses {
+    padding: 40px 3%;
+    margin-top: 0;
+  }
+
+  .course-card {
+    flex: 1 1 100%;
+    max-width: 90%;
+  }
+
+  .advantages {
+    padding: 50px 5%;
+  }
+
+  .advantages h2 {
+    font-size: 1.6em;
+  }
+
+  .advantages p {
+    font-size: 1em;
+  }
+
+  .faq h2 {
+    font-size: 1.7em;
+  }
+
+  .accordion-item {
+    max-width: 100%;
+  }
+
+  .contact-section {
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 5%;
+  }
+
+  .contact-info {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .contact-map {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .site-footer {
+    padding: 30px 5%;
+    text-align: center;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .footer-links {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .footer-contact p {
+    font-size: 14px;
+  }
+}
+
+
+/* ✅ АДАПТИВ ДЛЯ БОЛЬШИХ ЭКРАНОВ (от 1200px) */
+@media (min-width: 1200px) {
+  .hero-text {
+    width: 600px;
+  }
+
+  .logo {
+    width: 520px;
+  }
+
+  .course-grid {
+    max-width: 1300px;
+  }
+
+  .course-card {
+    flex: 1 1 calc(25% - 25px);
   }
 }

@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import SiteSettings, HomePageContent, AboutPageContent, Course, HomePageTexts
+import random
 
 # Create your views here.
 
@@ -20,7 +21,7 @@ def home_page(request):
 
 def about_page(request):
     site_settings = SiteSettings.objects.first()
-    about_texts = AboutPageContent.objects.all()
+    about_texts = AboutPageContent.objects.first()
 
     context = {
         "site_settings":site_settings,
@@ -43,10 +44,13 @@ def courses(request):
 def course_detail(request, pk):
     site_settings = SiteSettings.objects.first()
     course = get_object_or_404(Course, pk=pk)
+    other_courses = list(Course.objects.exclude(pk=pk))
+    random_courses = random.sample(other_courses, min(len(other_courses), 3))
 
     context = {
         "site_settings":site_settings,
         "course":course,
+        "random_courses":random_courses,
     }
 
     return render(request, "edu_landing/course_detail.html", context)
