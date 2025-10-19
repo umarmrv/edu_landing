@@ -1,0 +1,27 @@
+# виртуалки/кеши
+.venv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+
+# VCS
+.git
+.gitignore
+
+# ОС-мусор
+.DS_Store
+
+# окружение/секреты (оно монтируется через env_file, в образ не нужно)
+.env
+
+# сборка фронта (на всякий)
+node_modules
+*.log
+
+# артефакты проекта
+static_collected
+media
+backups
+*.sqlite3
+db.sqlite3

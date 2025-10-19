@@ -1,15 +1,46 @@
 
 
 services:
+  web:
+    build:
+      context: .
+      dockerfile: compose/django/Dockerfile
+    command: ./compose/django/entrypoint.sh
+    env_file: .env
+    depends_on:
+      - db
+    volumes:
+      - static_volume:/app/static_collected
+      - media_volume:/app/media
+    expose:
+      - "8000"
+    restart: unless-stopped
+
   db:
     image: postgres:16
     env_file: .env
     environment:
       - POSTGRES_INITDB_ARGS=--encoding=UTF8 --lc-collate=C --lc-ctype=C
+    # порт наружу можно оставить локально; в проде обычно не публикуем
     ports:
-      - "5432:5432"              # чтобы ты мог подключаться с хоста (manage.py)
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:1.27
+    depends_on:
+      - web
+    ports:
+      - "80:80"
+    volumes:
+      - static_volume:/var/www/static:ro
+      - media_volume:/var/www/media:ro
+      - ./compose/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    restart: unless-stopped
 
 volumes:
   postgres_data:
+  static_volume:
+  media_volume:
