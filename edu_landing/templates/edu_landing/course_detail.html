@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site_settings.site_name }} | {{ course.title }}</title>
+
+    <link rel="stylesheet" href="{% static "css/course_detail.css" %}">
+    <link rel="icon" type="image/png" href="{{ site_settings.logo.url }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+
+    <nav class="nav">
+        <div class="nav_left">
+            {% if site_settings and site_settings.logo %}
+            <img src="{{ site_settings.logo.url }}" alt="Logo" class="logo_img">
+            {% else %}
+            <div class="divider"></div>
+            {% endif %}
+            <div class="nav_links">
+                <a href="{% url "home" %}" class="nav_links-a home-page">Home</a>
+                <a href="{% url "courses" %}" class="nav_links-a courses-page">Courses</a>
+                <a href="{% url "about" %}" class="nav_links-a about-page">About</a>
+                <a href="#" class="nav_links-a course_detail_a">{{ course.title }}</a>
+            </div>
+        </div>
+        <div class="nav_right">
+            <a href="/admin/" class="admin-link">Admin</a>
+        </div>
+    </nav>
+
+    {% if course.image %}
+    <section class="course-detail" style="background-image: url('{{ course.image.url }}');">
+    {% else %}
+    <section class="course-detail" style="background-image: url('{{ course.image.url }}');">
+    {% endif %}
+        <div class="course-overlay"></div>
+        <div class="course-content">
+            <h1>{{ course.title }}</h1>
+            <p>{{ course.full_description }}</p>
+            
+            <div class="course-meta">
+                {% if course.language %}<span>Language: {{ course.language }}</span>{% endif %}
+                {% if course.level %}<span>Level: {{ course.level }}</span>{% endif %}
+                {% if course.schedule %}<span>Schedule: {{ course.schedule }}</span>{% endif %}
+                {% if course.price %}<span>Price: {{ course.price }} TJS</span>{% endif %}
+            </div>
+
+            {% if course.goal %}
+            <p style="margin-top:20px; font-style: italic; opacity: 0.9;">🎯 {{ course.goal }}</p>
+            {% endif %}
+
+            <a href="{% url 'courses' %}" class="back-btn">← Back to Courses</a>
+        </div>
+    </section>
+
+
+    <div class="related-courses">
+        <h2>Other Courses You May Like</h2>
+        <div class="related-grid">
+            {% for c in random_courses %}
+            {% if c.image %}
+            <a href="{% url 'course_detail' c.pk %}" class="related-card" style="background-image: url('{{ c.image.url }}');">
+            {% else %}
+            <a href="{% url 'course_detail' c.pk %}" class="related-card">
+            {% endif %}
+                <div class="related-overlay">
+                    <h3>{{ c.title }}</h3>
+                    <p>{{ c.short_description|truncatechars:80 }}</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>    
+
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="{{site_settings.logo.url}}" alt="Logo">
+            </div>
+
+            <div class="footer-links">
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'courses' %}">Courses</a>
+                <a href="{% url 'about' %}">About</a>
+            </div>
+
+            <div class="footer-contact">
+                <p>Email: <a href="mailto:{{site_settings.email}}">{{site_settings.email}}</a></p>
+                <p>Phone: <a href="tel:{{site_settings.phone}}">{{ site_settings.phone }}</a></p>
+            </div>
+
+            <div class="footer-copy">
+                <p>&copy; {{ now.year }} Kamolot Learning Center. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>

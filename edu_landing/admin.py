@@ -36,13 +36,13 @@ class HomePageContentAdmin(admin.ModelAdmin):
             return False
         return True
 
-admin.register(AboutPageContent)
+@admin.register(AboutPageContent)
 class AboutPageContentAdmin(admin.ModelAdmin):
     list_display = ("title",)
 
     fieldsets = (
         (None, {
-            "fields": ("title", "content"),
+            "fields": ("title", "subtitle","content"),
         }),
     )
 
